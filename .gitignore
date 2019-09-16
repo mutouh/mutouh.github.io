@@ -1,0 +1,8 @@
+.DS_Store
+.deploy_git
+*.log
+*.iml
+yarn.lock
+package-lock.json
+node_modules/
+public/
