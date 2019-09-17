@@ -3,6 +3,6 @@
 *.log
 *.iml
 yarn.lock
-package-lock.json
 node_modules/
 public/
+db.json
