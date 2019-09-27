@@ -2,7 +2,7 @@
 title: git clone报错 early EOF + index-pack failed
 date: 2019-06-04 14:09
 tags: [Git]
-categories: 踩到了
+categories: 踩坑
 comments: true
 ---
 
