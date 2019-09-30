@@ -6,8 +6,6 @@
 
 ### 使用匿名内部类+代码块初始化的影响
 
-### idea 能够识别pom.xml，但是无法识别maven目录结构
-
 ### jyjh操作数据库时无法使用localDate
 
 jyjh使用的hibernate4
