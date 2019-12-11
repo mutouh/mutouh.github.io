@@ -14,3 +14,5 @@ jyjh使用的hibernate4
 * http://www.worldwarner.com/plus/view.php?aid=29089
 * https://thoughts-on-java.org/persist-localdate-localdatetime-jpa/
 * https://stackoverflow.com/questions/51683368/jpa-how-to-convert-localdatetime-to-localdate
+
+### 使用@Autowire会提示field inject is not recommed，但是@Resource不会
