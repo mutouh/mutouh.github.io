@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari_pinned_tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240,"onmobile":false},"copycode":{"enable":true,"style":null,"show_result":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="我现在在哪里 假设现在我们手上有这么一些东西：  一个项目。比如公司的项目，或者你亲手写的HelloDemo 一台服务器。并且惊奇的发现服务器上已经装好了Docker。还没有？？点这里 用IDEA打开了项目，并能够正常运行。 通过相关的ssh软件连接了服务器并处于登陆状态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用maven-docker插件自动发布镜像">
+<meta property="og:url" content="http://yoursite.com/2019/04/20/main/maven-docker/index.html">
+<meta property="og:site_name" content="凉薄&#39;s blog">
+<meta property="og:description" content="我现在在哪里 假设现在我们手上有这么一些东西：  一个项目。比如公司的项目，或者你亲手写的HelloDemo 一台服务器。并且惊奇的发现服务器上已经装好了Docker。还没有？？点这里 用IDEA打开了项目，并能够正常运行。 通过相关的ssh软件连接了服务器并处于登陆状态">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/.com//%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://yoursite.com/.com//Dockerfile%E5%86%85%E5%AE%B9.png">
+<meta property="article:published_time" content="2019-04-20T02:26:03.000Z">
+<meta property="article:modified_time" content="2021-11-30T12:48:11.026Z">
+<meta property="article:author" content="mutouh">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/.com//%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/04/20/main/maven-docker/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://yoursite.com/2019/04/20/main/maven-docker/","path":"2019/04/20/main/maven-docker/","title":"使用maven-docker插件自动发布镜像"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用maven-docker插件自动发布镜像 | 凉薄's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">凉薄's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">16</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%8E%B0%E5%9C%A8%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="nav-number">1.</span> <span class="nav-text">我现在在哪里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E8%AF%A5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">2.</span> <span class="nav-text">我该怎么办</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E5%9C%A8%E5%B7%A5%E7%A8%8B%E7%9A%84pom-xml%E6%96%87%E4%BB%B6%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%8F%92%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">第一步 在工程的pom.xml文件中新增插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E6%89%93%E5%BC%80%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ADocker%E7%9A%84%E8%BF%9C%E7%A8%8BAPI"><span class="nav-number">2.2.</span> <span class="nav-text">第二步 打开服务器上Docker的远程API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E5%A2%9E%E5%8A%A0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%88Windows%E7%B3%BB%E7%BB%9F%E9%80%89%E5%81%9A%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">第三步 增加环境变量（Windows系统选做）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E6%8F%92%E4%BB%B6%E6%98%AF%E5%90%A6%E6%9C%89%E6%95%88"><span class="nav-number">3.</span> <span class="nav-text">验证插件是否有效</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mutouh"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mutouh</p>
+  <div class="site-description" itemprop="description">如今你的气质里,藏着你走过的路,读过的书和爱过的人.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:mutouh@qq.com" title="E-Mail → mailto:mutouh@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yourname" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/main/maven-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="mutouh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凉薄's blog">
+      <meta itemprop="description" content="如今你的气质里,藏着你走过的路,读过的书和爱过的人.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用maven-docker插件自动发布镜像 | 凉薄's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用maven-docker插件自动发布镜像
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E5%88%B0%E4%BA%86/" itemprop="url" rel="index"><span itemprop="name">学到了</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<h2 id="我现在在哪里"><a href="#我现在在哪里" class="headerlink" title="我现在在哪里"></a>我现在在哪里</h2></blockquote>
+<p>假设现在我们手上有这么一些东西：</p>
+<ol>
+<li>一个项目。比如公司的项目，或者你亲手写的HelloDemo</li>
+<li>一台服务器。并且惊奇的发现服务器上已经装好了Docker。还没有？？<a href>点这里</a></li>
+<li>用IDEA打开了项目，并能够正常运行。</li>
+<li>通过相关的ssh软件连接了服务器并处于登陆状态</li>
+</ol>
+<span id="more"></span>
+
+<blockquote>
+<h2 id="我该怎么办"><a href="#我该怎么办" class="headerlink" title="我该怎么办"></a>我该怎么办</h2></blockquote>
+<h3 id="第一步-在工程的pom-xml文件中新增插件"><a href="#第一步-在工程的pom-xml文件中新增插件" class="headerlink" title="第一步 在工程的pom.xml文件中新增插件"></a>第一步 在工程的pom.xml文件中新增插件</h3><p>第一种方式：插件中定义，而不额外增加Dockerfile文件，适合定义简单镜像，比如现在这种写demo的情况。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;plugins&gt;</span></span><br><span class="line">    <span class="string">&lt;!--</span> <span class="string">docker</span> <span class="string">--&gt;</span></span><br><span class="line">    <span class="string">&lt;plugin&gt;</span></span><br><span class="line">        <span class="string">&lt;groupId&gt;com.spotify&lt;/groupId&gt;</span></span><br><span class="line">        <span class="string">&lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;</span></span><br><span class="line">        <span class="string">&lt;version&gt;1.0.0&lt;/version&gt;</span></span><br><span class="line">        <span class="string">&lt;executions&gt;</span></span><br><span class="line">            <span class="string">&lt;!--执行</span> <span class="string">mvn</span> <span class="string">package</span> <span class="string">时</span> <span class="string">自动</span> <span class="string">执行</span> <span class="string">mvn</span> <span class="string">docker:build--&gt;</span></span><br><span class="line">            <span class="string">&lt;execution&gt;</span></span><br><span class="line">                <span class="string">&lt;id&gt;build-image&lt;/id&gt;</span></span><br><span class="line">                <span class="string">&lt;phase&gt;package&lt;/phase&gt;</span></span><br><span class="line">                <span class="string">&lt;goals&gt;</span></span><br><span class="line">                    <span class="string">&lt;goal&gt;build&lt;/goal&gt;</span></span><br><span class="line">                <span class="string">&lt;/goals&gt;</span></span><br><span class="line">            <span class="string">&lt;/execution&gt;</span></span><br><span class="line">        <span class="string">&lt;/executions&gt;</span></span><br><span class="line">        <span class="string">&lt;configuration&gt;</span></span><br><span class="line">            <span class="string">&lt;imageName&gt;$&#123;docker.image.prefix&#125;/$&#123;project.artifactId&#125;:latest&lt;/imageName&gt;</span></span><br><span class="line">            <span class="string">&lt;baseImage&gt;java&lt;/baseImage&gt;</span></span><br><span class="line">            <span class="string">&lt;entryPoint&gt;[&quot;java&quot;,&quot;-jar&quot;,&quot;/$&#123;project.build.finalName&#125;.jar&#125;&quot;]&lt;/entryPoint&gt;</span></span><br><span class="line">            <span class="string">&lt;dockerHost&gt;</span> <span class="string">http://10.10.10.107:2375</span> <span class="string">&lt;/dockerHost&gt;</span></span><br><span class="line">            <span class="string">&lt;!--</span> <span class="string">&lt;dockerDirectory&gt;src/main/docker&lt;/dockerDirectory&gt;</span> <span class="string">--&gt;</span></span><br><span class="line">            <span class="string">&lt;resources&gt;</span></span><br><span class="line">                <span class="string">&lt;resource&gt;</span></span><br><span class="line">                    <span class="string">&lt;targetPath&gt;/&lt;/targetPath&gt;</span></span><br><span class="line">                    <span class="string">&lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;</span></span><br><span class="line">                    <span class="string">&lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;</span></span><br><span class="line">                <span class="string">&lt;/resource&gt;</span></span><br><span class="line">            <span class="string">&lt;/resources&gt;</span></span><br><span class="line">        <span class="string">&lt;/configuration&gt;</span></span><br><span class="line">    <span class="string">&lt;/plugin&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第二种方式：通用方式，更易定制镜像</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;plugins&gt;</span></span><br><span class="line">    <span class="string">&lt;!--</span> <span class="string">docker</span> <span class="string">--&gt;</span></span><br><span class="line">    <span class="string">&lt;plugin&gt;</span></span><br><span class="line">        <span class="string">&lt;groupId&gt;com.spotify&lt;/groupId&gt;</span></span><br><span class="line">        <span class="string">&lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;</span></span><br><span class="line">        <span class="string">&lt;version&gt;1.0.0&lt;/version&gt;</span></span><br><span class="line">        <span class="string">&lt;executions&gt;</span></span><br><span class="line">            <span class="string">&lt;!--执行</span> <span class="string">mvn</span> <span class="string">package</span> <span class="string">时</span> <span class="string">自动</span> <span class="string">执行</span> <span class="string">mvn</span> <span class="string">docker:build--&gt;</span></span><br><span class="line">            <span class="string">&lt;execution&gt;</span></span><br><span class="line">                <span class="string">&lt;id&gt;build-image&lt;/id&gt;</span></span><br><span class="line">                <span class="string">&lt;phase&gt;package&lt;/phase&gt;</span></span><br><span class="line">                <span class="string">&lt;goals&gt;</span></span><br><span class="line">                    <span class="string">&lt;goal&gt;build&lt;/goal&gt;</span></span><br><span class="line">                <span class="string">&lt;/goals&gt;</span></span><br><span class="line">            <span class="string">&lt;/execution&gt;</span></span><br><span class="line">        <span class="string">&lt;/executions&gt;</span></span><br><span class="line">        <span class="string">&lt;configuration&gt;</span></span><br><span class="line">            <span class="string">&lt;imageName&gt;$&#123;docker.image.prefix&#125;/$&#123;project.artifactId&#125;:latest&lt;/imageName&gt;</span></span><br><span class="line">            <span class="string">&lt;!--</span> <span class="string">&lt;baseImage&gt;java&lt;/baseImage&gt;</span> <span class="string">--&gt;</span></span><br><span class="line">            <span class="string">&lt;!--</span> <span class="string">&lt;entryPoint&gt;[&quot;java&quot;,&quot;-jar&quot;,&quot;/$&#123;project.build.finalName&#125;.jar&#125;&quot;]&lt;/entryPoint&gt;</span> <span class="string">--&gt;</span></span><br><span class="line">            <span class="string">&lt;dockerHost&gt;http://10.10.10.107:2375&lt;/dockerHost&gt;</span></span><br><span class="line">            <span class="string">&lt;dockerDirectory&gt;src/main/docker&lt;/dockerDirectory&gt;</span></span><br><span class="line">            <span class="string">&lt;resources&gt;</span></span><br><span class="line">                <span class="string">&lt;resource&gt;</span></span><br><span class="line">                    <span class="string">&lt;targetPath&gt;/&lt;/targetPath&gt;</span></span><br><span class="line">                    <span class="string">&lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;</span></span><br><span class="line">                    <span class="string">&lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;</span></span><br><span class="line">                <span class="string">&lt;/resource&gt;</span></span><br><span class="line">            <span class="string">&lt;/resources&gt;</span></span><br><span class="line">        <span class="string">&lt;/configuration&gt;</span></span><br><span class="line">    <span class="string">&lt;/plugin&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>目录结构：</p>
+<p><img src="/.com//%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt="添加了docker文件夹的目录结构"></p>
+<p>Dockerfile内容：</p>
+<p><img src="/.com//Dockerfile%E5%86%85%E5%AE%B9.png" alt="Dockerfile内容"></p>
+<h3 id="第二步-打开服务器上Docker的远程API"><a href="#第二步-打开服务器上Docker的远程API" class="headerlink" title="第二步 打开服务器上Docker的远程API"></a>第二步 打开服务器上Docker的远程API</h3><p>老大丢我的服务器是什么发行版？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">local</span>]<span class="comment"># cat /etc/os-release</span></span><br><span class="line">NAME=<span class="string">&quot;CentOS Linux&quot;</span></span><br><span class="line">VERSION=<span class="string">&quot;7 (Core)&quot;</span></span><br><span class="line">ID=<span class="string">&quot;centos&quot;</span></span><br><span class="line">ID_LIKE=<span class="string">&quot;rhel fedora&quot;</span></span><br><span class="line">VERSION_ID=<span class="string">&quot;7&quot;</span></span><br><span class="line">PRETTY_NAME=<span class="string">&quot;CentOS Linux 7 (Core)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>确定发行版后，确定docker.service的位置并编辑它。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br></pre></td></tr></table></figure>
+
+<p>部分内容如下，搜索ExecStart并在后面追加 -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock ，是追加！原样追加！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Docker Application Container Engine</span><br><span class="line">Documentation=https://docs.docker.com</span><br><span class="line">BindsTo=containerd.service</span><br><span class="line">After=network-online.target firewalld.service containerd.service</span><br><span class="line">Wants=network-online.target</span><br><span class="line">Requires=docker.socket</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=notify</span><br><span class="line"><span class="comment"># the default is not to use systemd for cgroups because the delegate issues still</span></span><br><span class="line"><span class="comment"># exists and systemd currently does not support the cgroup feature set required</span></span><br><span class="line"><span class="comment"># for containers run by docker</span></span><br><span class="line">ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock</span><br><span class="line">ExecReload=/bin/kill -s HUP <span class="variable">$MAINPID</span></span><br><span class="line">TimeoutSec=0</span><br><span class="line">RestartSec=2</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line"><span class="comment"># Note that StartLimit* options were moved from &quot;Service&quot; to &quot;Unit&quot; in systemd 229.</span></span><br><span class="line"><span class="comment"># Both the old, and new location are accepted by systemd 229 and up, so using the old location</span></span><br><span class="line"><span class="comment"># to make them work for either version of systemd.</span></span><br><span class="line">StartLimitBurst=3</span><br></pre></td></tr></table></figure>
+
+<p>不要忘记重启docker的守护线程和docker，查看2375端口是否被docker监听，检查2375端口是否成功对外开放</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">local</span>]<span class="comment"># systemctl daemon-reload</span></span><br><span class="line">[root@localhost <span class="built_in">local</span>]<span class="comment"># systemctl restart docker</span></span><br><span class="line">[root@localhost <span class="built_in">local</span>]<span class="comment"># netstat -anp|grep 2375</span></span><br><span class="line">tcp6       0      0 :::2375                 :::*                    LISTEN      9151/dockerd</span><br><span class="line">[root@localhost <span class="built_in">local</span>]<span class="comment"># curl 127.0.0.1:2375/info</span></span><br><span class="line">&#123;<span class="string">&quot;ID&quot;</span>:<span class="string">&quot;EVL2:VMEB:CUJ6:KL5D:AHS5:RBQU:KTTK:ZGWU:GQCO:ULZ4:6ZP2:2MYW&quot;</span>,<span class="string">&quot;Containers&quot;</span>:0,<span class="string">&quot;ContainersRunning&quot;</span>:0,<span class="string">&quot;ContainersPaused&quot;</span>:0,<span class="string">&quot;ContainersStopped&quot;</span>:0,<span class="string">&quot;Images&quot;</span>:0,<span class="string">&quot;Driver&quot;</span>:<span class="string">&quot;overlay2&quot;</span>,<span class="string">&quot;DriverStatus&quot;</span>:[[<span class="string">&quot;Backing Filesystem&quot;</span>,<span class="string">&quot;xfs&quot;</span>],[<span class="string">&quot;Supports d_type&quot;</span>,<span class="string">&quot;true&quot;</span>],[<span class="string">&quot;Native Overlay Diff&quot;</span>,<span class="string">&quot;true&quot;</span>]],<span class="string">&quot;SystemStatus&quot;</span>:null,<span class="string">&quot;Plugins&quot;</span>:&#123;<span class="string">&quot;Volume&quot;</span>:[<span class="string">&quot;local&quot;</span>],<span class="string">&quot;Network&quot;</span>:[<span class="string">&quot;bridge&quot;</span>,<span class="string">&quot;host&quot;</span>,<span class="string">&quot;macvlan&quot;</span>,<span class="string">&quot;null&quot;</span>,<span class="string">&quot;overlay&quot;</span>],<span class="string">&quot;Authorization&quot;</span>:null,<span class="string">&quot;Log&quot;</span>:[<span class="string">&quot;awslogs&quot;</span>,<span class="string">&quot;fluentd&quot;</span>,<span class="string">&quot;gcplogs&quot;</span>,<span class="string">&quot;gelf&quot;</span>,<span class="string">&quot;journald&quot;</span>,<span class="string">&quot;json-file&quot;</span>,<span class="string">&quot;local&quot;</span>,<span class="string">&quot;logentries&quot;</span>,<span class="string">&quot;splunk&quot;</span>,<span class="string">&quot;syslog&quot;</span>]&#125;,<span class="string">&quot;MemoryLimit&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;SwapLimit&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;KernelMemory&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;CpuCfsPeriod&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;CpuCfsQuota&quot;</span>:<span class="literal">true</span>......</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三步-增加环境变量（Windows系统选做）"><a href="#第三步-增加环境变量（Windows系统选做）" class="headerlink" title="第三步 增加环境变量（Windows系统选做）"></a>第三步 增加环境变量（Windows系统选做）</h3><p>Windows系统：其他文章都有这一步，需要在系统环境变量中新增Docker_HOST，值为tcp://http://服务器IP:2375。<br>Mac系统：本人macOS major并没有添加环境变量依然可以实现通信。猜测Windows也是可以不用的，因为pom.xml中已经写明了<dockerHost><a target="_blank" rel="noopener" href="http://10.10.10.107:2375/">http://10.10.10.107:2375</a></dockerHost>，并且IDEA是一个功能强大的编辑器。当然想法有待验证。</p>
+<blockquote>
+<h2 id="验证插件是否有效"><a href="#验证插件是否有效" class="headerlink" title="验证插件是否有效"></a>验证插件是否有效</h2></blockquote>
+<ol>
+<li><p>第一个坑</p>
+<ul>
+<li><p>报错</p>
+<p>   执行mvn package报错：找不到docker目录</p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:1.0.0:build (build-image) on project api: Exception caught: basedir src/main/docker does not exist -&gt; [Help 1]</span><br><span class="line">[ERROR] </span><br><span class="line">[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.</span><br><span class="line">[ERROR] Re-run Maven using the -X switch to enable full debug logging.</span><br><span class="line">......</span><br></pre></td></tr></table></figure></li>
+<li><p>解决</p>
+<p>   什么！瞎了嘛！就在那还找不到？解决办法很简单，修改pom.xml，在路径前面加上项目路径<code>&lt;dockerDirectory&gt;$&#123;project.basedir&#125;/src/main/docker&lt;/dockerDirectory&gt;</code>。来自<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/47308102/failed-to-execute-goal-com-spotifydocker-maven-plugin1-0-0build-exception-cau">Stack Overflow上的解决方案</a></p>
+</li>
+<li><p>思考：</p>
+<p>   因为别人的文章中用的都是demo工程，而我用的是一个项目，并且没有在parent的pom里面加插件，而只用了一个api模块做测试，在模块pom中增加docker-maven插件，所以要补全路径。</p>
+</li>
+</ul>
+<p> 正常运行mvn package后，控制台开始走日志信息，大意是先打包成jar，然后插件工作，根据Dockerfile生成镜像发布到服务器，登陆服务器使用docker image ls命令能看到新增的镜像。</p>
+</li>
+<li><p>第二个坑</p>
+</li>
+</ol>
+<p>这个坑搞了半天，不说了都是泪，估计也没有人和我一样蠢。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/04/20/main/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85Docker/" rel="prev" title="在服务器上安装Docker">
+                  <i class="fa fa-chevron-left"></i> 在服务器上安装Docker
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/04/%E5%9D%91/git%20early%20EOF/" rel="next" title="git clone报错 early EOF + index-pack failed">
+                  git clone报错 early EOF + index-pack failed <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">这已经是我的底线了！ </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mutouh</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
