@@ -20,20 +20,20 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240,"onmobile":false},"copycode":{"enable":true,"style":null,"show_result":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="背景 Vuepress V1.x 插件 vuepress-plugin-export v0.2.0  使用vuepress搭建了一个开发手册，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分">
+    <meta name="description" content="背景 Vuepress V1.x 插件 vuepress-plugin-export@0.2.0  使用vuepress搭建了一个内部文档，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vuepress 站点导出PDF页面乱序">
 <meta property="og:url" content="http://yoursite.com/2022/06/12/main/vuepress-export-to-pdf/index.html">
 <meta property="og:site_name" content="凉薄&#39;s blog">
-<meta property="og:description" content="背景 Vuepress V1.x 插件 vuepress-plugin-export v0.2.0  使用vuepress搭建了一个开发手册，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分">
+<meta property="og:description" content="背景 Vuepress V1.x 插件 vuepress-plugin-export@0.2.0  使用vuepress搭建了一个内部文档，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/.com//git-log.png">
+<meta property="og:image" content="http://yoursite.com/2022/06/12/main/vuepress-export-to-pdf/git-log.png">
 <meta property="article:published_time" content="2022-06-12T05:22:48.612Z">
-<meta property="article:modified_time" content="2022-07-03T07:46:35.980Z">
+<meta property="article:modified_time" content="2022-07-03T08:39:17.334Z">
 <meta property="article:author" content="mutouh">
 <meta property="article:tag" content="vuepress">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/.com//git-log.png">
+<meta name="twitter:image" content="http://yoursite.com/2022/06/12/main/vuepress-export-to-pdf/git-log.png">
 
 
 <link rel="canonical" href="http://yoursite.com/2022/06/12/main/vuepress-export-to-pdf/">
@@ -207,13 +207,13 @@
         <!-- # Vuepress 站点导出PDF页面乱序 -->
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
 <li>Vuepress V1.x</li>
-<li>插件 <a target="_blank" rel="noopener" href="https://github.com/ulivz/vuepress-plugin-export/releases/tag/v0.2.0">vuepress-plugin-export v0.2.0</a></li>
+<li>插件 <a target="_blank" rel="noopener" href="https://github.com/ulivz/vuepress-plugin-export/releases/tag/v0.2.0">vuepress-plugin-export@0.2.0</a></li>
 </ul>
-<p>使用vuepress搭建了一个开发手册，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支代码不一致，怀疑是版本问题。</p>
-<p>确认git提交记录，可以发现支持sorter函数是在v0.2.0之后，后面虽然提交了很多功能，但是一直没有编译新的版本。</p>
-<p><img src="/.com//git-log.png" alt="git log"></p>
+<p>使用vuepress搭建了一个内部文档，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支代码不一致，怀疑是版本问题。</p>
 <span id="more"></span>
 
+<p>确认git提交记录，可以发现支持sorter函数是在v0.2.0之后，后面虽然提交了很多功能，但是一直没有编译新的版本。</p>
+<p><img src="/2022/06/12/main/vuepress-export-to-pdf/git-log.png" alt="git log"></p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>作为前端小白，并不想自己从源码打包版本。后面在github上找到了另外一款插件<a target="_blank" rel="noopener" href="https://github.com/SnowdogApps/vuepress-plugin-pdf-export">vuepress-plugin-pdf-export v1.1.0</a>替代。其实在github上用“vuepress pdf“作为关键词有2页记录，其中有的插件实现的思路是根据vuepress导航栏配置来自动排序。</p>
 <h2 id="vuepress-plugin-pdf-export-使用"><a href="#vuepress-plugin-pdf-export-使用" class="headerlink" title="vuepress-plugin-pdf-export 使用"></a>vuepress-plugin-pdf-export 使用</h2><p>插件支持配置一个sorter函数，作者没有给出栗子，这里提供两个思路。</p>
 <ul>

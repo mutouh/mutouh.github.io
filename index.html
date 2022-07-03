@@ -200,11 +200,9 @@
           <!-- # Vuepress 站点导出PDF页面乱序 -->
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
 <li>Vuepress V1.x</li>
-<li>插件 <a target="_blank" rel="noopener" href="https://github.com/ulivz/vuepress-plugin-export/releases/tag/v0.2.0">vuepress-plugin-export v0.2.0</a></li>
+<li>插件 <a target="_blank" rel="noopener" href="https://github.com/ulivz/vuepress-plugin-export/releases/tag/v0.2.0">vuepress-plugin-export@0.2.0</a></li>
 </ul>
-<p>使用vuepress搭建了一个开发手册，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支代码不一致，怀疑是版本问题。</p>
-<p>确认git提交记录，可以发现支持sorter函数是在v0.2.0之后，后面虽然提交了很多功能，但是一直没有编译新的版本。</p>
-<p><img src="/.com//git-log.png" alt="git log"></p>
+<p>使用vuepress搭建了一个内部文档，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支代码不一致，怀疑是版本问题。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/12/main/vuepress-export-to-pdf/#more" rel="contents">
@@ -348,7 +346,7 @@
           <!-- # nginx重写路径参数为URL参数 -->
 
 <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>移除请求路径中的token参数，并将其移动到URL参数中</p>
-<p>有N个接口如下：<br><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataJson?name=test">http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataJson?name=test</a><br><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataXml?name=test">http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataXml?name=test</a><br><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/services/RES_TWO/c_kjdksl-myl/getData?name=test">http://127.0.0.1:8080/services/RES_TWO/c_kjdksl-myl/getData?name=test</a><br>其中用户token=c_kjdksl-myl</p>
+<p>有N个接口如下：<br><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataJson?name=test">http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataJson?name=test</a><br><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataXml?name=test">http://127.0.0.1:8080/services/RES_ONE/c_kjdksl-myl/getDataXml?name=test</a><br><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/services/RES_TWO/c_kjdksl-myl/getData?name=test">http://127.0.0.1:8080/services/RES_TWO/c_kjdksl-myl/getData?name=test</a><br>其中用户token&#x3D;c_kjdksl-myl</p>
 <h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 正则匹配目标URI</span></span><br><span class="line"><span class="section">location</span> <span class="regexp">~ ^/services/RES_\w+/.+/(getDataJson|getDataXml)$</span> &#123;</span><br><span class="line">    <span class="comment"># 重写URI中token位置</span></span><br><span class="line">    <span class="attribute">rewrite</span><span class="regexp"> ^/(services/RES_\w+)/(.+)/(getDataJson|getDataXml)$</span> /<span class="variable">$1</span>/<span class="variable">$3</span>?token=<span class="variable">$2</span> <span class="literal">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:9090;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>原始请求：<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/services/RES_THREE/c_kjdksl-myl/getDataJson?name=test">http://127.0.0.1:8080/services/RES_THREE/c_kjdksl-myl/getDataJson?name=test</a><br>nginx重写：<a target="_blank" rel="noopener" href="http://127.0.0.1:9090/services/RES_THREE/getDataJson?token=c_kjdksl-myl&amp;name=test">http://127.0.0.1:9090/services/RES_THREE/getDataJson?token=c_kjdksl-myl&amp;name=test</a></p>
@@ -413,7 +411,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>某个api限定10秒内只允许20个请求</p>
-<h2 id="基于Redis的setnx"><a href="#基于Redis的setnx" class="headerlink" title="基于Redis的setnx"></a>基于Redis的setnx</h2><p>setnx = set if not exist</p>
+<h2 id="基于Redis的setnx"><a href="#基于Redis的setnx" class="headerlink" title="基于Redis的setnx"></a>基于Redis的setnx</h2><p>setnx &#x3D; set if not exist</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SETNX mykey <span class="string">&quot;Hello&quot;</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">redis&gt; SETNX mykey <span class="string">&quot;World&quot;</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">redis&gt; GET mykey</span><br><span class="line"><span class="string">&quot;Hello&quot;</span></span><br><span class="line">redis&gt; </span><br></pre></td></tr></table></figure>
 
 <p>方案：请求到来时，通过setnx设置一个类似limit-key-xxx的key，并设置过期时间为10秒。下次请求到来时，先查询指定前缀的key的数量，若已存在20个则请求不放行。<br>优点：key数量不会无限制增加<br>缺点：</p>

@@ -228,9 +228,10 @@
 <p>  顺利clone仓库，但是会发现这次clone只clone了最新的一次提交历史，故这种clone方式会丢失历史记录。但是可以配合<code>git fetch --unshallow</code>找回。</p>
 </li>
 <li><p>如果目标源分支过多，可以指定clone的分支</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> -b master https://example.com/example/example.git</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> -b master https://example.com/example/example.git</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>为Git添加配置项</p>
-<p>  在/Users/username/.gitconfig文件中添加配置</p>
+<p>  在&#x2F;Users&#x2F;username&#x2F;.gitconfig文件中添加配置</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git config --add core.compression -1 // git目录下可使用命令</span></span><br><span class="line"><span class="comment"># git config --help // 查看手册了解参数意义</span></span><br><span class="line">[core]</span><br><span class="line">    compression = -1    // 压缩，value = [-1，9]</span><br></pre></td></tr></table></figure>
 
 <p>  这种做法具体我没有试，因为我发现即使还没有配置这个参数，从第一次clone失败的的输出信息中第4行也可以发现，针对swagger-ui项目，默认远端就会进行压缩。</p>

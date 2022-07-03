@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240,"onmobile":false},"copycode":{"enable":true,"style":null,"show_result":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="需求某个api限定10秒内只允许20个请求 基于Redis的setnxsetnx &#x3D; set if not exist 1234567redis&gt; SETNX mykey &quot;Hello&quot;(integer) 1redis&gt; SETNX mykey &quot;World&quot;(integer) 0redis&gt; GET mykey&quot;Hello&amp;qu">
+    <meta name="description" content="需求某个api限定10秒内只允许20个请求 基于Redis的setnxsetnx &#x3D; set if not exist 1234567redis&gt; SETNX mykey &quot;Hello&quot;(integer) 1redis&gt; SETNX mykey &quot;World&quot;(integer) 0redis&gt; GET mykey&quot;Hel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用redis进行接口限流">
 <meta property="og:url" content="http://yoursite.com/2021/12/14/main/redis%E9%99%90%E6%B5%81/index.html">
 <meta property="og:site_name" content="凉薄&#39;s blog">
-<meta property="og:description" content="需求某个api限定10秒内只允许20个请求 基于Redis的setnxsetnx &#x3D; set if not exist 1234567redis&gt; SETNX mykey &quot;Hello&quot;(integer) 1redis&gt; SETNX mykey &quot;World&quot;(integer) 0redis&gt; GET mykey&quot;Hello&amp;qu">
+<meta property="og:description" content="需求某个api限定10秒内只允许20个请求 基于Redis的setnxsetnx &#x3D; set if not exist 1234567redis&gt; SETNX mykey &quot;Hello&quot;(integer) 1redis&gt; SETNX mykey &quot;World&quot;(integer) 0redis&gt; GET mykey&quot;Hel">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-14T12:37:13.654Z">
 <meta property="article:modified_time" content="2022-06-20T11:50:44.540Z">
@@ -203,7 +203,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>某个api限定10秒内只允许20个请求</p>
-<h2 id="基于Redis的setnx"><a href="#基于Redis的setnx" class="headerlink" title="基于Redis的setnx"></a>基于Redis的setnx</h2><p>setnx = set if not exist</p>
+<h2 id="基于Redis的setnx"><a href="#基于Redis的setnx" class="headerlink" title="基于Redis的setnx"></a>基于Redis的setnx</h2><p>setnx &#x3D; set if not exist</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SETNX mykey <span class="string">&quot;Hello&quot;</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">redis&gt; SETNX mykey <span class="string">&quot;World&quot;</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">redis&gt; GET mykey</span><br><span class="line"><span class="string">&quot;Hello&quot;</span></span><br><span class="line">redis&gt; </span><br></pre></td></tr></table></figure>
 
 <p>方案：请求到来时，通过setnx设置一个类似limit-key-xxx的key，并设置过期时间为10秒。下次请求到来时，先查询指定前缀的key的数量，若已存在20个则请求不放行。<br>优点：key数量不会无限制增加<br>缺点：</p>

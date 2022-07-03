@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="凉薄&#39;s blog">
 <meta property="og:description" content="俗话说人人都有一颗搭博客的心，直到前段时间再次看到一篇名为&lt;&lt;使用hexo+github搭建免费个人博客详细教程&gt;&gt;的文章。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/.com//version.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/09/main/hello-world/version.png">
 <meta property="article:published_time" content="2018-12-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-06-20T11:55:02.637Z">
 <meta property="article:author" content="mutouh">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="GitHub">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/.com//version.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/09/main/hello-world/version.png">
 
 
 <link rel="canonical" href="http://yoursite.com/2018/12/09/main/hello-world/">
@@ -237,7 +237,7 @@
 <p>  这里会告诉你使用hexo前你应该安装好Git和Node.js，当然没有也没关系，因为它会告诉你怎么做。Node.js是hexo需要依赖的环境，而Git在建站的时候你就会知道他有什么用了。Git和Node。js的安装可以安装win系统熟悉的方式下载安装包安装，而Hexo可以通过git bash中输入命令的方式安装。</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <p>  全都安装完了以后，建议在cmd或者git bash中查看一下版本，这么做主要是为了确认这些都正确安装了。</p>
-<p>  <img src="/.com//version.png" alt="它们的安装版本"></p>
+<p>  <img src="/2018/12/09/main/hello-world/version.png" alt="它们的安装版本"></p>
 </li>
 <li><p>建站</p>
 <p>  官方一上来就给了三条命令:</p>
@@ -285,12 +285,13 @@
 <li><p>首先，你需要去Hexo官网的 <a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes</a> 模块找到一个你喜欢的主题。虽然它的排序方式是以英文字母顺序来的，没有排行榜，目前比较受欢迎的主题有NexT，也是我选用的主题。</p>
 </li>
 <li><p>其次，每一个主题都对应一个github仓库，预览主题时你一定能找到指引你去仓库的方式。拿到仓库地址后你只需要将它克隆到本地来。如果你还记得你的博客的目录结构的话，你会发现有一个themes文件夹，打开文件夹后你会看到这里面只有一个文件夹那就是landscape，在这里打开一个git bash将你喜欢的主题仓库克隆下来。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:theme-next/hexo-theme-next.git       //以NexT主题为例</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:theme-next/hexo-theme-next.git       //以NexT主题为例</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>最后，如果想让这个主题生效，那么就需要在你的装修清单_config.yml中修改主题。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line">   <span class="attr">theme:</span> <span class="string">next</span>     <span class="string">//默认是landscape，直接修改即可，名称与themes文件夹下主题文件夹同名</span></span><br></pre></td></tr></table></figure>
-<p>重新发布博客。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean        //清除</span><br><span class="line">$ hexo generate     //重新生成静态页面</span><br><span class="line">$ hexo deploy       //发布</span><br></pre></td></tr></table></figure>
-<p>重新在浏览器访问博客，验证是否生效。</p>
+  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line">   <span class="attr">theme:</span> <span class="string">next</span>     <span class="string">//默认是landscape，直接修改即可，名称与themes文件夹下主题文件夹同名</span></span><br></pre></td></tr></table></figure>
+<p>  重新发布博客。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean        //清除</span><br><span class="line">$ hexo generate     //重新生成静态页面</span><br><span class="line">$ hexo deploy       //发布</span><br></pre></td></tr></table></figure>
+<p>  重新在浏览器访问博客，验证是否生效。</p>
 </li>
 </ol>
 </li>
