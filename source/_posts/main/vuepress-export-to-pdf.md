@@ -7,15 +7,15 @@ tag: vuepress
 ## 背景
 
 - Vuepress V1.x
-- 插件 [vuepress-plugin-export v0.2.0](https://github.com/ulivz/vuepress-plugin-export/releases/tag/v0.2.0)
+- 插件 [vuepress-plugin-export@0.2.0](https://github.com/ulivz/vuepress-plugin-export/releases/tag/v0.2.0)
 
-使用vuepress搭建了一个开发手册，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支代码不一致，怀疑是版本问题。
+使用vuepress搭建了一个内部文档，因为有离线阅读和便于分发的需求，所以需要将vuepress站点导出PDF文件，使用了上面的导出插件。根据插件github上的介绍是支持对导出页面进行排序的，但是试了很久没有效果。后来查看了本地依赖包源码发现并没有相关功能代码，与github上master分支代码不一致，怀疑是版本问题。
+
+<!-- more -->
 
 确认git提交记录，可以发现支持sorter函数是在v0.2.0之后，后面虽然提交了很多功能，但是一直没有编译新的版本。
 
 ![git log](vuepress-export-to-pdf/git-log.png)
-
-<!-- more -->
 
 ## 解决方案
 
