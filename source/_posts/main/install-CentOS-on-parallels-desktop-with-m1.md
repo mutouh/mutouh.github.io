@@ -1,7 +1,7 @@
 ---
 title: 在m1上使用Parallels Desktop安装CentOS
 date: 2022-07-06 15:04:11
-tags: [m1,parallels desktop,centos]
+tags: [m1,Parallels Desktop,CentOS]
 ---
 ## 无法安装
 

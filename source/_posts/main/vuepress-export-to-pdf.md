@@ -1,6 +1,6 @@
 ---
 title: Vuepress 站点导出PDF页面乱序
-tag: vuepress
+tag: Vuepress
 ---
 
 <!-- # Vuepress 站点导出PDF页面乱序 -->
