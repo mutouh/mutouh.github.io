@@ -19,7 +19,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'mutouh', // Usually your GitHub org/user name.
-  projectName: 'docusaurus-site', // Usually your repo name.
+  projectName: 'mutouh.github.io', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
