@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[8057],{69737:s=>{s.exports=JSON.parse('{"label":"TED","permalink":"/blog/tags/ted","allTagsPath":"/blog/tags","count":1}')}}]);
