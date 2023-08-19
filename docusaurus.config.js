@@ -74,6 +74,19 @@ module.exports = async function createConfig() {
         }),
       ],
     ],
+
+    plugins: [
+      [
+        '@docusaurus/plugin-content-docs',
+        {
+          id: 'mbp',
+          path: 'mbp',
+          routeBasePath: 'mbp',
+          sidebarPath: require.resolve('./sidebarsMbp.js'),
+          // ... other options
+        },
+      ],
+    ],
   
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -94,6 +107,20 @@ module.exports = async function createConfig() {
               label: 'Tutorial',
             },
             {to: '/blog', label: 'Blog', position: 'left'},
+            {
+              type: 'docSidebar',
+              position: 'left',
+              sidebarId: 'linux',
+              label: 'Linux',
+            },
+            // 先隐藏，待内容补充完整
+            // {
+            //   to: '/mbp/software',
+            //   label: 'mbp',
+            //   position: 'left',
+            //   activeBaseRegex: `/mbp/`,
+            // },
+            // right
             {
               href: 'https://github.com/facebook/docusaurus',
               label: 'GitHub',

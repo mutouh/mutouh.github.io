@@ -10,6 +10,7 @@ tags: [Spring]
 * bean的生命周期
   * 推断构造方法
   * 属性填充
+    *_ InstantiationAwareBeanPostProcessor
   * 初始化
     * 初始化前置
       *_ Aware
@@ -31,6 +32,12 @@ tags: [Spring]
 2. InitializingBean
 3. BeanPostProcessor.postProcessAfterInitialization()
 
+### 常用注解
+- @AutoWired
+    在属性填充阶段处理，处理类是AutowiredAnnotationBeanPostProcessor
+
+- @Resource
+    处理类是CommonAnnotationBeanPostProcessor
 
 ## AOP代理
 
