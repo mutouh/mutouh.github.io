@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[9697],{3779:s=>{s.exports=JSON.parse('[{"label":"\u6a21\u677f","permalink":"/mbp/tags/\u6a21\u677f","count":1}]')}}]);
