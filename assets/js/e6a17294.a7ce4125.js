@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[7385],{4571:e=>{e.exports=JSON.parse('{"label":"\u6a21\u677f","permalink":"/mbp/tags/\u6a21\u677f","allTagsPath":"/mbp/tags","count":1,"items":[{"id":"software","title":"Software","description":"brew","permalink":"/mbp/software"}]}')}}]);
