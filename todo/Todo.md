@@ -1,0 +1,3 @@
+- parsec 远程桌面
+- horizion 批量桌面池
+- pve平台 proxmox esxi

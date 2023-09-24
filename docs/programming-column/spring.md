@@ -39,6 +39,9 @@ tags: [Spring]
 - @Resource
     处理类是CommonAnnotationBeanPostProcessor
 
+- @PostConstruct
+    处理类是CommonAnnotationBeanPostProcessor.postProcessBeforeInitialization()
+
 ## AOP代理
 
 - JDK代理
@@ -99,7 +102,7 @@ tags: [Spring]
     没有@Configuration会导致产生两个datasource
 
 ## 循环依赖
-三级缓存解决单例bean循环依赖问题。个人认为严格上说是二级缓存和三级缓存一起解决了循环依赖问题，源码里也可以看出来，这两个缓存的操作是成对出现的并且需要加锁。
+三级缓存解决单例bean循环依赖问题。个人认为严格上说是二级缓存和三级缓存一起解决了循环依赖问题，源码里也可以看出来，后两个缓存的操作是成对出现的并且需要加锁。
 
 - 一级缓存singletonObjects
 
