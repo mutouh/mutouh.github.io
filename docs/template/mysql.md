@@ -28,3 +28,42 @@ csv数据列与表列映射关系：(dv_version, dv_create_date, @dv_create_time
 由于第三列可能为空，先使用变量接收，通过nullif（）函数处理为null插入表中。
 
 > PS：对于mysql数据中空值也可以用“\N”代替，见官方文档
+
+## 创建mysql8容器
+
+```yaml [compose.yaml]
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.0.24
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/local.sql
+    command: 
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8mb4 
+      - --collation-server=utf8mb4_general_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: pAssWord
+    ports:
+      - 3306:3306
+    restart: always
+```
+
+```sql [init.sql]
+set names utf8mb4;
+drop database if exists demo;
+create database demo;
+
+use demo;
+drop table if exists student;
+create table student(
+    id int auto_increment,
+    name varchar(10) not null,
+    primary key (id)
+);
+
+insert into student(id, name)
+values (1, '张三'),
+       (2, '李四');
+```

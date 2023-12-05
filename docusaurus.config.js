@@ -11,6 +11,23 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = async function createConfig() {
   const { remarkKroki } = await import('remark-kroki');
 
+  /** @type {import('@docusaurus/plugin-content-docs').Options} */
+  const defaultSettings = {
+    // 默认使用自动生成的侧边栏配置
+    sidebarPath: require.resolve('./sidebars.js'),
+    // 默认使用插件
+    remarkPlugins: [
+      [
+        remarkKroki,
+        {
+          // ...options here
+          server: 'https://kroki.io',
+          alias: ['plantuml']
+        }
+      ]
+    ],
+  };
+
   return {
     title: 'My Site',
     tagline: 'Dinosaurs are cool',
@@ -67,6 +84,16 @@ module.exports = async function createConfig() {
             // Remove this to remove the "edit this page" links.
             editUrl:
               'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            remarkPlugins: [
+              [
+                remarkKroki,
+                  {
+                    // ...options here
+                    server: 'https://kroki.io',
+                    alias: ['plantuml']
+                  }
+              ]
+            ],
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
@@ -79,10 +106,30 @@ module.exports = async function createConfig() {
       [
         '@docusaurus/plugin-content-docs',
         {
-          id: 'mbp',
-          path: 'mbp',
-          routeBasePath: 'mbp',
-          sidebarPath: require.resolve('./sidebarsMbp.js'),
+          id: 'docsLinux',
+          path: 'docslinux',
+          routeBasePath: 'docslinux',
+          ...defaultSettings
+          // ... other options
+        },
+      ],
+      [
+        '@docusaurus/plugin-content-docs',
+        {
+          id: 'docsAnsible',
+          path: 'docsansible',
+          routeBasePath: 'docsansible',
+          ...defaultSettings
+          // ... other options
+        },
+      ],
+      [
+        '@docusaurus/plugin-content-docs',
+        {
+          id: 'docsMbp',
+          path: 'docsmbp',
+          routeBasePath: 'docsmbp',
+          ...defaultSettings
           // ... other options
         },
       ],
@@ -104,22 +151,30 @@ module.exports = async function createConfig() {
               type: 'doc',
               docId: 'intro',
               position: 'left',
-              label: 'Tutorial',
+              label: 'Docs',
             },
             {to: '/blog', label: 'Blog', position: 'left'},
+            // docs linux
             {
-              type: 'docSidebar',
+              to: '/docslinux/chrony',
               position: 'left',
-              sidebarId: 'linux',
               label: 'Linux',
+              activeBaseRegex: `/docslinux/`,
+            },
+            // docs ansible
+            {
+              to: '/docsansible/intro',
+              position: 'left',
+              label: 'Ansible',
+              activeBaseRegex: `/docsansible/`,
             },
             // 先隐藏，待内容补充完整
-            // {
-            //   to: '/mbp/software',
-            //   label: 'mbp',
-            //   position: 'left',
-            //   activeBaseRegex: `/mbp/`,
-            // },
+            {
+              to: '/docsmbp/intro',
+              position: 'left',
+              label: 'Mac开发环境',
+              activeBaseRegex: `/docsmbp/`,
+            },
             // right
             {
               href: 'https://github.com/facebook/docusaurus',

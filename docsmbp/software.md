@@ -1,21 +1,21 @@
 ---
-title: Software
+title: 常用软件
 date: 2023-07-11
 tags: []
 ---
-# Software
-## 基本
-### brew
+# 常用软件
+### Homebrew
 ### clashx-pro
-### Shottr
-截图，ocr
-国内平替ishot
+### Shottr cleanshotx ishot
+截图，ocr识别
 ### IntelliJ IDEA
+Java集成开发环境
+
+### IntelliJ DataGrip
+数据库管理工具
 
 ### fliqlo
 屏保翻页时钟
-
-Java开发
 
 ### jd-gui
 jar包反编译查看
@@ -26,7 +26,6 @@ Java内存分析工具
 ### termius
 ssh客户端
 
-## 其他
 ### Koddo Reader
 开源电子书阅读器
 
@@ -44,8 +43,3 @@ ssh客户端
 
 ### betterzip
 压缩软件
-
-qlcolorcode
-qlstephen
-qlmarkdown
-quicklook-json

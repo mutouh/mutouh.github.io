@@ -1,9 +1,9 @@
 ---
-title: Shell
+title: Java
 date: 2023-04-05
 tags: [模板]
 ---
-# Shell
+# Java
 ## Linux下启动java程序的脚本
 ```Shell
 #!/bin/sh
