@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[1713],{3457:e=>{e.exports=JSON.parse('[{"label":"TED","permalink":"/blog/tags/ted","count":1},{"label":"Hexo","permalink":"/blog/tags/hexo","count":1},{"label":"GitHub","permalink":"/blog/tags/git-hub","count":1}]')}}]);

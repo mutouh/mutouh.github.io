@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[4568],{2315:s=>{s.exports=JSON.parse('[{"label":"NTP","permalink":"/docslinux/tags/ntp","count":2},{"label":"\u65f6\u95f4\u540c\u6b65","permalink":"/docslinux/tags/\u65f6\u95f4\u540c\u6b65","count":2},{"label":"Linux","permalink":"/docslinux/tags/linux","count":1}]')}}]);

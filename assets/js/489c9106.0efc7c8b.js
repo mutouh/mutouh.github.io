@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[5281],{6584:s=>{s.exports=JSON.parse('[{"label":"IDEA","permalink":"/docsmbp/tags/idea","count":1},{"label":"Mac\u5f00\u53d1\u73af\u5883","permalink":"/docsmbp/tags/mac\u5f00\u53d1\u73af\u5883","count":1},{"label":"vscode","permalink":"/docsmbp/tags/vscode","count":1}]')}}]);

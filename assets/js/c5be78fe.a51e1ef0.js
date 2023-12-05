@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[162],{3311:e=>{e.exports=JSON.parse('{"label":"IDEA","permalink":"/docsmbp/tags/idea","allTagsPath":"/docsmbp/tags","count":1,"items":[{"id":"intellj-idea-plugins","title":"IntelliJ IDEA \u63d2\u4ef6","description":"Maven Helper","permalink":"/docsmbp/intellj-idea-plugins"}]}')}}]);
