@@ -66,7 +66,7 @@ left side
 - 直接选择旁路由模式，最简单，只需要部署一个路由系统即可，那么当然是新手最友好的 iStoreOS 了
 - 机器直接用的手上吃灰的NUC8，一个网口正适合旁路由
 - 虽然只是折腾软路由，但还是先在机器上安装PVE然后再装iStoreOS，正好熟悉下PVE
-- 装PVE不需要重做U盘，测试用Ventoy就可以
+- 装PVE不需要重做U盘，实测用Ventoy就可以
 
 ## 安装PVE底座
 
@@ -84,9 +84,20 @@ PVE官网下载最新版ISO镜像放到Ventoy中，插到机器上开机从Vento
 
 怎么用上网学习，没看到很好的文章。
 
+常用公共dns地址：
+
+223.5.5.5 阿里云
+114.114.114.114 114
+119.29.29.29 腾讯
+180.76.76.76 百度
+8.8.8.8 谷歌
+1.1.1.1 cloudflare
+
 ### AdGuardHome
 
-参考《[OpenWrt 保姆级AdGuard Home 设置广告拦截＆加快DNS解析网页秒开][6]》、《[AdGuard Home 安装及使用指北][7]》
+参考《[OpenWrt 保姆级AdGuard Home 设置广告拦截＆加快DNS解析网页秒开][6]》、《[浅谈OpenClash与ADGuard Home的组合][7]》
+
+打开 https://checkadblock.ru/ 测试一下过滤效果，因为是国外的只能做参考
 
 ### 青龙面板
 
@@ -97,6 +108,23 @@ PVE官网下载最新版ISO镜像放到Ventoy中，插到机器上开机从Vento
 ### Go-WebDav
 
 参考官方《[WebDav共享][11]》
+
+## OpenClash+AdGuardHome
+oc：
+
+1. 配置机场订阅
+1. 全局设置-模式设置：Fake-IP混合模式，仅代理命中流量
+1. 全局设置-DNS设置：取消本地DNS劫持，自定义上游DNS服务器，禁止Dnsmasq缓存DNS
+
+adh：
+
+1. 更新核心
+1. 配置端口，重定向（使用53端口替换dnsmasq）
+1. 打开网页管理页面，设置-dns设置
+   - 上游dns服务器设置为openclash的地址127.0.0.1:7874
+   - Bootstrap DNS服务器设置为公共dns即可
+   - 限速、缓存可按需设置
+2. 过滤器-DNS黑名单
 
 ## 做个记录避免找不到入口
 
@@ -113,7 +141,7 @@ PVE官网下载最新版ISO镜像放到Ventoy中，插到机器上开机从Vento
 [4]: https://doc.linkease.com/zh/guide/istoreos/install_pve.html
 [5]: https://github.com/AUK9527/Are-u-ok
 [6]: https://www.yitoujing.com/article/36
-[7]: https://sspai.com/post/63088
+[7]: https://lrt666.top/posts/5246fadb.html
 [8]: https://www.feiji.work/2021/411.html
 [9]: https://www.pangzhai.xyz/docker_qinglong/
 [10]: https://conveniencespace.com/index.php/2022/05/03/2022%E6%9C%80%E6%96%B0%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E4%BA%AC%E4%B8%9C%E8%84%9A%E6%9C%AC%E5%BA%93%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/
