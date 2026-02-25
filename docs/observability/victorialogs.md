@@ -43,11 +43,11 @@ victorialogs 支持 OpenTelemetry 协议(OTLP)，提供了 HTTP API（/insert/op
 ## 读数据
 - 原生可视化
 
-VictoriaLogs 可以使用内置 VMUI 浏览数据，地址 http://<victoria-logs>:9428/vmui。
+VictoriaLogs 可以使用内置 VMUI 浏览数据，地址 [http://vls-victoria-logs-single-server:9428/vmui](http://vls-victoria-logs-single-server:9428/vmui)。
 
 - grafana 可视化
 
-需要安装 VictoriaLogs grafana 插件，而后添加数据源，填写地址为：http://<victoria-logs>:9428
+需要安装 VictoriaLogs grafana 插件，而后添加数据源，填写地址为：http://vls-victoria-logs-single-server:9428
 
 ## otlp 配置示例
 ```yml otel-collector.cm.yml

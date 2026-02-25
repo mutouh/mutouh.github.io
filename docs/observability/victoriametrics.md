@@ -31,11 +31,11 @@ victoriametrics 支持 OpenTelemetry 协议(OTLP)，提供了 HTTP API（/opente
 ## 读数据
 - 原生可视化
 
-VictoriaMetrics 可以使用内置 VMUI 浏览数据，地址 http://<victoria-metrics>:8428/vmui。
+VictoriaMetrics 可以使用内置 VMUI 浏览数据，地址 [http://vms-victoria-metrics-single-server:8428/vmui](http://vms-victoria-metrics-single-server:8428/vmui)。
 
 - grafana 可视化
 
-可以直接使用 Prometheus 插件，或安装 VictoriaMetrics grafana 插件，而后添加数据源，填写地址为：http://<victoriametrics>:8428
+可以直接使用 Prometheus 插件，或安装 VictoriaMetrics grafana 插件，而后添加数据源，填写地址为：http://vms-victoria-metrics-single-server:8428
 
 ## otlp 配置示例
 ```yml otel-collector.cm.yml

@@ -27,7 +27,7 @@ helm install vts vm/victoria-traces-single --namespace $NAMESPACE --wait \
 victoriatraces 支持 OpenTelemetry 协议(OTLP)，提供了 HTTP API（/insert/opentelemetry/v1/traces）和 gRPC 服务，分别支持  OTLP/HTTP 和 OTLP/gRPC。
 
 ## 读数据
-VictoriaTraces 可以使用内置从 VMUI 浏览数据，地址 http://<victoria-traces>:10428/vmui。
+VictoriaTraces 可以使用内置从 VMUI 浏览数据，地址 [http://vts-vt-single-server:10428/vmui](http://vts-vt-single-server:10428/vmui)。
 VictoriaTraces 同时提供 Jaeger Query Service JSON APIs，这允许用户在grafana上可视化链路数据，只需要添加一个 Jaeger 数据源，填写地址为：http://vts-vt-single-server:10428/select/jaeger
 
 ## otlp 配置示例
