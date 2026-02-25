@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[3508],{8928:a=>{a.exports=JSON.parse('{"label":"Kafka","permalink":"/docs/tags/kafka","allTagsPath":"/docs/tags","count":1,"items":[{"id":"programming-column/kafka","title":"Kafka","description":"\u7279\u6027","permalink":"/docs/programming-column/kafka"}]}')}}]);
