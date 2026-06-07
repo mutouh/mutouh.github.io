@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[9031],{9398:s=>{s.exports=JSON.parse('{"label":"Agent Skills","permalink":"/docs/tags/agent-skills","allTagsPath":"/docs/tags","count":1,"items":[{"id":"ai/agentskill","title":"Agent Skills","description":"skill \u5f00\u53d1\u65b9\u5f0f","permalink":"/docs/ai/agentskill"}]}')}}]);

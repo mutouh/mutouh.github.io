@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[1653],{8115:s=>{s.exports=JSON.parse('{"label":"Shiro","permalink":"/docs/tags/shiro","allTagsPath":"/docs/tags","count":1,"items":[{"id":"java/Shiro","title":"Shiro","description":"\u5bfc\u8bba","permalink":"/docs/java/Shiro"}]}')}}]);

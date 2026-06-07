@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_website=self.webpackChunkdocusaurus_website||[]).push([[8874],{6047:s=>{s.exports=JSON.parse('{"label":"Spring Boot","permalink":"/docs/tags/spring-boot","allTagsPath":"/docs/tags","count":1,"items":[{"id":"java/SpringBoot","title":"Spring Boot","description":"\u4e00\u3001SpringApplication","permalink":"/docs/java/SpringBoot"}]}')}}]);
