@@ -106,26 +106,6 @@ module.exports = async function createConfig() {
       [
         '@docusaurus/plugin-content-docs',
         {
-          id: 'docsLinux',
-          path: 'docslinux',
-          routeBasePath: 'docslinux',
-          ...defaultSettings
-          // ... other options
-        },
-      ],
-      [
-        '@docusaurus/plugin-content-docs',
-        {
-          id: 'docsAnsible',
-          path: 'docsansible',
-          routeBasePath: 'docsansible',
-          ...defaultSettings
-          // ... other options
-        },
-      ],
-      [
-        '@docusaurus/plugin-content-docs',
-        {
           id: 'docsMbp',
           path: 'docsmbp',
           routeBasePath: 'docsmbp',
@@ -154,21 +134,6 @@ module.exports = async function createConfig() {
               label: 'Docs',
             },
             {to: '/blog', label: 'Blog', position: 'left'},
-            // docs linux
-            {
-              to: '/docslinux/chrony',
-              position: 'left',
-              label: 'Linux',
-              activeBaseRegex: `/docslinux/`,
-            },
-            // docs ansible
-            {
-              to: '/docsansible/intro',
-              position: 'left',
-              label: 'Ansible',
-              activeBaseRegex: `/docsansible/`,
-            },
-            // 先隐藏，待内容补充完整
             {
               to: '/docsmbp/intro',
               position: 'left',
