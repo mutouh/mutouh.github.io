@@ -1,4 +1,3 @@
-- parsec 远程桌面
 - horizion 批量桌面池
 - uml画图 pddon VS plantuml
 - 画图软件 drawio VS onemodel
